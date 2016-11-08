@@ -50,7 +50,7 @@ def tokenizer(tweet, takeHashtagMention=True):
 
     return tokens
 
-def pre_processing(tweet):
+def preProcessing(tweet):
     tokens = tokenizer(tweet)
     return [token["lemma"] for token in tokens \
                     if len(token["lemma"]) > 2 \
