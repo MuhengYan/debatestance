@@ -40,14 +40,14 @@ if __name__ == "__main__":
     NUMDAYS = int(args.day)
 
     if is_all == "T":
-        date_start = datetime.utcnow().strftime('%Y-%m-%d-%H')
+        date_start = datetime.now().strftime('%Y-%m-%d-%H')
         date_start = datetime.strptime(str(date_start), '%Y-%m-%d-%H')
         timeLines = [date_start - timedelta(hours=x) for x in range(0, NUMDAYS * 24)]
 
         date_list = ','.join([str(each_time.strftime("%m%d")) for each_time in timeLines])
         days = [str(each_time.strftime("%Y-%m-%d-%H")) for each_time in timeLines]
     else:
-        now = datetime.utcnow()
+        now = datetime.now()
         YEAR = now.year
         MONTH = '{:02d}'.format(now.month)
         DAY = '{:02d}'.format(now.day)
@@ -74,9 +74,10 @@ if __name__ == "__main__":
             .map(filterTweets.getTargetStance) \
             .filter(lambda x: len(x.get("tokens")) > 0) \
             .filter(lambda x: x is not None) \
-            .cache()
+            .cache() \
+            .collect()
 
-        json_data = json.dumps(tweets)
+        json_data = json.dumps(tweets,indent=4)
         final_outputFileName = '{}.json'.format(outputFileName)
         _log.info("Saving to JSON ...")
         with open(final_outputFileName, 'w') as f:
