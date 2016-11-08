@@ -20,17 +20,34 @@ hashtagClintonAgainst = ["#dropouthillary", "#neverhillary"]
 
 def detectTargetHashtags(tweet):
     text = tweet.get("text")
+    hashtagList = ["#trump2016", "#makeamericagreatagain",
+                   "#nevertrump", "#dumptrump",
+                   "#dropouthillary", "#neverhillary",
+                   "#imwithher", "#hillary2016"]
     for tag in hashtagList:
         if tag in text:
             return tweet
     return None
 
 def getTargetStance(tweet):
-    tokens = tweet.get("token")
-    tweet["favorClinton"] = sum([1 for token in tokens if token in hashtagClintonFavor])
-    tweet["favorTrump"] = sum([1 for token in tokens if token in hashtagTrumpFavor])
-    tweet["againstClinton"] = sum([1 for token in tokens if token in hashtagClintonAgainst])
-    tweet["againstTrump"] = sum([1 for token in tokens if token in hashtagTrumpAgainst])
+    tokens = tweet.get("tokens")
+    fC = 0
+    fT = 0
+    aC = 0
+    aT = 0
+    for token in tokens:
+        if token in hashtagClintonFavor:
+            fC += 1
+        if token in hashtagTrumpFavor:
+            fT += 1
+        if token in hashtagClintonAgainst:
+            aC += 1
+        if token in hashtagTrumpAgainst:
+            aT += 1
+    tweet["favorClinton"] = fC
+    tweet["favorTrump"] = fT
+    tweet["againstClinton"] = aC
+    tweet["againstTrump"] = aT
     return tweet
 
 def purgeTweets(tweet):
