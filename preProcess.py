@@ -20,7 +20,7 @@ def lemmatize(word):
 
 def tokenizer(tweet, takeHashtagMention=True):
 
-    tweet = tweet.replace("\u2026", "")
+    tweet = ''.join([i if ord(i) < 128 else ' ' for i in tweet])
     tweet = ' '.join(re.sub(r"(?:@\S*|http(?=.*://)\S*)", "", tweet).split())
 
     sentences = [sent for sent in nltk.sent_tokenize(tweet)]
