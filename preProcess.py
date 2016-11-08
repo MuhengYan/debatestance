@@ -2,6 +2,7 @@
 
 import nltk
 import string
+import re
 
 lmtzr = nltk.WordNetLemmatizer()
 stop = nltk.corpus.stopwords.words('english')
@@ -18,6 +19,9 @@ def lemmatize(word):
 
 
 def tokenizer(tweet, takeHashtagMention=True):
+
+    tweet = tweet.replace("\u2026", "")
+    tweet = ' '.join(re.sub(r"(?:@\S*|http(?=.*://)\S*)", "", tweet).split())
 
     sentences = [sent for sent in nltk.sent_tokenize(tweet)]
 
