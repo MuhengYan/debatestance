@@ -56,3 +56,6 @@ def preProcessing(tweet):
                     if len(token["lemma"]) > 2 \
                     and token["lemma"][0] not in ['@']]
     # return [token["lemma"] for token in tokens ]
+
+def removeHashtags(tokens):
+    return [token for token in tokens if token[0] not in ['#']]

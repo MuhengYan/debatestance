@@ -1,7 +1,7 @@
 import math
 import json
 from datetime import datetime
-from preProcess import preProcessing
+from preProcess import preProcessing, removeHashtags
 
 
 hashtagList = ["#trump2016", "#makeamericagreatagain",
@@ -44,6 +44,8 @@ def getTargetStance(tweet):
             aC += 1
         if token in hashtagTrumpAgainst:
             aT += 1
+    _tokens = removeHashtags(tokens)
+    tweet["tokens"] = _tokens
     tweet["favorClinton"] = fC
     tweet["favorTrump"] = fT
     tweet["againstClinton"] = aC
