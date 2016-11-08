@@ -51,7 +51,7 @@ if __name__ == "__main__":
         YEAR = now.year
         MONTH = '{:02d}'.format(now.month)
         DAY = '{:02d}'.format(now.day)
-        HOUR = '{:02d}'.format(now.hour)
+        HOUR = '{:02d}'.format(now.hour - 1)
         days = ["{}-{}-{}-{}".format(YEAR, MONTH, DAY, HOUR)]
 
     for day in days:
