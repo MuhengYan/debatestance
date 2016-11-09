@@ -40,7 +40,7 @@ if __name__ == "__main__":
     NUMDAYS = int(args.day)
 
     if is_all == "T":
-        date_start = datetime.now().strftime('%Y-%m-%d-%H')
+        date_start = datetime.now(2016,11,8,16).strftime('%Y-%m-%d-%H')
         date_start = datetime.strptime(str(date_start), '%Y-%m-%d-%H')
         timeLines = [date_start - timedelta(hours=x) for x in range(0, NUMDAYS * 24)]
 
