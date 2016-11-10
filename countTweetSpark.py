@@ -36,6 +36,10 @@ if __name__ == "__main__":
     tweets = file.map(json.loads) \
         .cache()
 
+    countTT = tweets \
+        .count()
+    count.append(['Total', countTT])
+
     countHt1 = tweets \
         .filter(lambda x: x['ht1'] > 0) \
         .count()
