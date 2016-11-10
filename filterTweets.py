@@ -59,10 +59,10 @@ def getTargetStance(tweet):
             h7 += 1
         if token in ht8:
             h8 += 1
-    fC = h1 + h2
-    fT = h3 + h4
-    aC = h5 + h6
-    aT = h7 + h8
+    fT = h1 + h2
+    fC = h3 + h4
+    aT = h5 + h6
+    aC = h7 + h8
     _tokens = removeHashtags(tokens)
     tweet["tokens"] = _tokens
     tweet["favorClinton"] = fC
