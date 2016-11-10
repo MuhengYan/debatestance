@@ -54,6 +54,7 @@ if __name__ == "__main__":
         HOUR = '{:02d}'.format(now.hour - 1)
         days = ["{}-{}-{}-{}".format(YEAR, MONTH, DAY, HOUR)]
 
+    count = 0
     for day in days:
         YEAR, MONTH, DAY, HOUR = day.split('-')
         outputFileName = ("{}/data/stance/{}{}{}{}_keywords".format(dir_path, YEAR, MONTH, DAY, HOUR))
@@ -68,6 +69,11 @@ if __name__ == "__main__":
 
         tweets = tweets \
             .filter(lambda x: x['lang'] == 'en') \
+            .cache()
+        tweetCount = tweets \
+            .count()
+        count += tweetCount
+        tweets = tweets \
             .map(filterTweets.detectTargetHashtags) \
             .filter(lambda x: x is not None) \
             .map(filterTweets.purgeTweets) \
@@ -82,4 +88,6 @@ if __name__ == "__main__":
         _log.info("Saving to JSON ...")
         with open(final_outputFileName, 'w') as f:
             f.write(json_data)
-
+    countFilePath = ("{}/data/tweetcount".format(dir_path))
+    with open(countFilePath, 'w') as countf:
+        countf.write(count)
