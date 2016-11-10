@@ -40,11 +40,11 @@ if __name__ == "__main__":
     NUMDAYS = int(args.day)
 
     if is_all == "T":
-        date_start = datetime(2016, 11, 1, 15).date().strftime('%Y-%m-%d')
-        date_start = datetime.strptime(str(date_start), '%Y-%m-%d').date()
-        timeLines = [date_start - timedelta(days=x) for x in range(0, NUMDAYS)]
+        date_start = datetime(2016,11,8,16).strftime('%Y-%m-%d-%H')
+        date_start = datetime.strptime(str(date_start), '%Y-%m-%d-%H')
+        timeLines = [date_start - timedelta(hours=x) for x in range(0, NUMDAYS * 24)]
         date_list = ','.join([str(each_time.strftime("%m%d")) for each_time in timeLines])
-        days = [str(each_time.strftime("%Y-%m-%d")) for each_time in timeLines]
+        days = [str(each_time.strftime("%Y-%m-%d-%H")) for each_time in timeLines]
     else:
         now = datetime.now()
         YEAR = now.year
@@ -55,10 +55,10 @@ if __name__ == "__main__":
 
     count = 0
     for day in days:
-        YEAR, MONTH, DAY = day.split('-')
-        outputFileName = ("{}/data/stance/{}{}{}_keywords".format(dir_path, YEAR, MONTH, DAY))
+        YEAR, MONTH, DAY, HOUR = day.split('-')
+        outputFileName = ("{}/data/stance/{}{}{}{}_keywords".format(dir_path, YEAR, MONTH, DAY, HOUR))
         _log.info("Preprocessing for {}...".format(outputFileName))
-        S3_LOCATION = "s3n://picso-lab/debate/keywords/{}/{}/{}".format(YEAR, MONTH, DAY)
+        S3_LOCATION = "s3n://picso-lab/debate/keywords/{}/{}/{}/{}".format(YEAR, MONTH, DAY, HOUR)
         _log.info("Reading From {}...".format(S3_LOCATION))
 
         # read file from s3 to rdd
