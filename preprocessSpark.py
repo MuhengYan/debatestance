@@ -90,4 +90,4 @@ if __name__ == "__main__":
             f.write(json_data)
     countFilePath = ("{}/data/tweetcount".format(dir_path))
     with open(countFilePath, 'w') as countf:
-        countf.write(count)
+        countf.write(str(count))
