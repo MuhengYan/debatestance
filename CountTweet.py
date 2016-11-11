@@ -13,6 +13,11 @@ ht5 = 0
 ht6 = 0
 ht7 = 0
 ht8 = 0
+ft = 0
+fc = 0
+at = 0
+ac = 0
+
 
 outData = list()
 outputFileName = ("{}/data/tweetCountByHashtags".format(dir_path))
@@ -48,6 +53,14 @@ for day in days:
             ht7 += 1
         if (item['ht8'] > 0):
             ht8 += 1
+        if (item['ht1'] + item['ht2'] > 0):
+            ft += 1
+        if (item['ht3'] + item['ht4'] > 0):
+            fc += 1
+        if (item['ht5'] + item['ht6'] > 0):
+            at += 1
+        if (item['ht7'] + item['ht8'] > 0):
+            ac += 1
 
 outData.append(['Total', str(total)])
 outData.append(['Trump2016', str(ht1)])
@@ -58,10 +71,10 @@ outData.append(['NeverTrump', str(ht5)])
 outData.append(['DumpTrump', str(ht6)])
 outData.append(['DropOutHillary', str(ht7)])
 outData.append(['NeverHillary', str(ht8)])
-outData.append(['FavorTrump', str(ht1 + ht2)])
-outData.append(['FavorClinton', str(ht3 + ht4)])
-outData.append(['AgainstTrump', str(ht5 + ht6)])
-outData.append(['AgainstClinton', str(ht7 + ht8)])
+outData.append(['FavorTrump', str(ft)])
+outData.append(['FavorClinton', str(fc)])
+outData.append(['AgainstTrump', str(at)])
+outData.append(['AgainstClinton', str(ac)])
 
 outString = ""
 
