@@ -36,48 +36,54 @@ if __name__ == "__main__":
 
     countTT = tweets \
         .count()
-    count.append(['Total', countTT])
+    count.append(['Total', str(countTT)])
 
     countHt1 = tweets \
         .filter(lambda x: x['ht1'] > 0) \
         .count()
-    count.append(['Trump2016', countHt1])
+    count.append(['Trump2016', str(countHt1)])
 
     countHt2 = tweets \
         .filter(lambda x: x['ht2'] > 0) \
         .count()
-    count.append(['MakeAmericaGreatAgain', countHt2])
+    count.append(['MakeAmericaGreatAgain', str(countHt2)])
 
     countHt3 = tweets \
         .filter(lambda x: x['ht3'] > 0) \
         .count()
-    count.append(['ImWithHer', countHt3])
+    count.append(['ImWithHer', str(countHt3)])
 
     countHt4 = tweets \
         .filter(lambda x: x['ht4'] > 0) \
         .count()
-    count.append(['Hillary2016', countHt4])
+    count.append(['Hillary2016', str(countHt4)])
 
     countHt5 = tweets \
         .filter(lambda x: x['ht5'] > 0) \
         .count()
-    count.append(['NeverTrump', countHt5])
+    count.append(['NeverTrump', str(countHt5)])
 
     countHt6 = tweets \
         .filter(lambda x: x['ht6'] > 0) \
         .count()
-    count.append(['DumpTrump', countHt6])
+    count.append(['DumpTrump', str(countHt6)])
 
     countHt7 = tweets \
         .filter(lambda x: x['ht7'] > 0) \
         .count()
-    count.append(['DropOutHillary', countHt7])
+    count.append(['DropOutHillary', str(countHt7)])
 
     countHt8 = tweets \
         .filter(lambda x: x['ht8'] > 0) \
         .count()
-    count.append(['NeverHillary', countHt8])
+    count.append(['NeverHillary', str(countHt8)])
 
     _log.info("Saving to file ...")
+    outString = ""
+    for l in count:
+        outString += " ".join(l)
+        outString += "\n"
+
     with open(outputFileName, 'w') as f:
-        f.write(count)
+        f.write(outString)
+        f.close()
