@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
 
     count = []
+    countTT = 0
     outputFileName = ("{}/data/tweetCountByHashtags".format(dir_path))
     _log.info("Preprocessing for {}...".format(outputFileName))
     inputDirLocation = "{}/data/stance".format(dir_path)
