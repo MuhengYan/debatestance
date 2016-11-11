@@ -30,8 +30,6 @@ if __name__ == "__main__":
     inputDirLocation = "{}/data/stance".format(dir_path)
     _log.info("Reading From {}...".format(inputDirLocation))
 
-    # read file from s3 to rdd
-    # try:
     file = sc.textFile(inputDirLocation)
     tweets = file.map(json.loads) \
         .cache()
